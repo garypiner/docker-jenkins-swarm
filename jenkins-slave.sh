@@ -20,13 +20,13 @@ if [[ $# -lt 1 ]] || [[ "$1" == "-"* ]]; then
       if [ ! -z "$CANDIDATE_TAG"]; then
         PARAMS="$PARAMS -candidateTag $CANDIDATE_TAG"
       fi
-      if [ "$DELETE_EXISTING_CLIENTS" = "true"]; then
+      if [ ! -z "$DELETE_EXISTING_CLIENTS" = "true"]; then
         PARAMS="$PARAMS -deleteExistingClients"
       fi
-      if [ "$DISABLE_CLIENTS_UNIQUE_ID" = "true"]; then
+      if [ ! -z "$DISABLE_CLIENTS_UNIQUE_ID" = "true"]; then
         PARAMS="$PARAMS -disableClientsUniqueId"
       fi
-      if [ "$DISABLE_SSL_VERIFICATION" = "true"]; then
+      if [ ! -z "$DISABLE_SSL_VERIFICATION" = "true"]; then
         PARAMS="$PARAMS -disableSslVerification"
       fi
       if [ ! -z "$EXECUTORS" ]; then
