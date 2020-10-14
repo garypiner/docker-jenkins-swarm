@@ -17,8 +17,13 @@ RUN git clone https://github.com/tfutils/tfenv.git /usr/tfenv && \
   tfenv install 0.12.28 && \
   tfenv use 0.12.28
 
-RUN wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.25.2/terragrunt_linux_amd64 -O /usr/local/bin/terragrunt && \
-  chmod 755 /usr/local/bin/terra*
+# RUN wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.25.2/terragrunt_linux_amd64 -O /usr/local/bin/terragrunt && \
+#   chmod 755 /usr/local/bin/terra*
+
+RUN git clone https://github.com/cunymatthieu/tgenv.git /usr/tgenv && \
+  ln -s /usr/tgenv/bin/* /usr/local/bin && \
+  tgenv install 0.25.2 && \
+  tgenv use 0.25.2
 
 RUN useradd -c "Jenkins Slave user" -d $HOME -m jenkins-slave
 RUN curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-$JENKINS_SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION.jar \
