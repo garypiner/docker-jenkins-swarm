@@ -9,8 +9,13 @@ RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.
   unzip awscli-bundle.zip && \
   sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
-RUN sudo wget https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip -O /tmp/terraform_linux_amd64.zip && \
-  sudo unzip /tmp/terraform_linux_amd64.zip -d /usr/local/bin
+# RUN sudo wget https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip -O /tmp/terraform_linux_amd64.zip && \
+#   sudo unzip /tmp/terraform_linux_amd64.zip -d /usr/local/bin
+
+RUN git clone https://github.com/tfutils/tfenv.git /usr/tfenv && \
+  ln -s /usr/tfenv/bin/* /usr/local/bin && \
+  tfenv install 0.12.28 && \
+  tfenv use 0.12.28
 
 RUN wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.25.2/terragrunt_linux_amd64 -O /usr/local/bin/terragrunt && \
   chmod 755 /usr/local/bin/terra*
