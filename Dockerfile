@@ -25,7 +25,8 @@ RUN git clone https://github.com/cunymatthieu/tgenv.git /usr/tgenv && \
   tgenv install 0.25.2 && \
   tgenv use 0.25.2
 
-RUN useradd -c "Jenkins Slave user" -d $HOME -m jenkins-slave
+RUN useradd -c "Jenkins Slave user" -d $HOME -m jenkins-slave && \
+  chown -R jenkins-slave:jenkins-slave $HOME
 RUN curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-$JENKINS_SWARM_VERSION.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/$JENKINS_SWARM_VERSION/swarm-client-$JENKINS_SWARM_VERSION.jar \
   && chmod 755 /usr/share/jenkins
 
